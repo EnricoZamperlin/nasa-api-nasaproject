@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PictureModel } from '../modules/PictureModel';
 import { PictureDataService } from '../picture-data.service';
 
@@ -10,7 +10,7 @@ import { PictureDataService } from '../picture-data.service';
   styleUrl: './pic.component.css'
 })
 
-export class PicComponent {
+export class PicComponent implements OnInit {
 
   private pictureService: PictureDataService
   public dailyPicture?: PictureModel
@@ -19,7 +19,11 @@ export class PicComponent {
     this.dailyPicture =  await this.pictureService.getData()
   }
 
-  constructor(pictureService: PictureDataService){
-    this.pictureService = pictureService
+  ngOnInit() {
+    this.showDatas();
+  }
+
+  constructor(pictureDataService: PictureDataService){
+    this.pictureService = pictureDataService
   }
 }
